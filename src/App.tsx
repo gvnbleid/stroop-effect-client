@@ -7,6 +7,7 @@ import { Stimulus } from './models/stimulus';
 import { Stopwatch } from "ts-stopwatch"
 import Button from '@material-ui/core/Button';
 import * as request from 'request'
+import { throwStatement } from '@babel/types';
 
 interface State {
   stimulus: Stimulus;
@@ -20,7 +21,7 @@ class App extends Component<{}, State> {
 
   state = {
     stimulus: {
-      name: "tygrys",
+      name: "",
       color: 'blue'
     },
     stimuli: [],
@@ -144,14 +145,14 @@ class App extends Component<{}, State> {
     )
   }
 
-  componentDidMount() {
-    console.log('triggered');
-    this.getSet(this.currentSet);
-  }
-
   private onInfoClick = () => {
     this.testState++;
     this.forceUpdate();
+  }
+
+  private onStartTest = () => {
+    this.getSet(this.currentSet);
+    this.onInfoClick();
   }
 
   render() {   
@@ -166,7 +167,7 @@ class App extends Component<{}, State> {
           }}
           >
             <InfoScreen onClick={this.onInfoClick} onEmail={this.setEmail}/>
-          </div>
+          </div> 
         );
       case 1:
         return (
@@ -177,7 +178,7 @@ class App extends Component<{}, State> {
           alignItems: "center"
           }}
           >
-            <InstructionScreen onClick={this.onInfoClick}/>
+            <InstructionScreen onClick={this.onStartTest}/>
           </div>
         );
       case 2:
