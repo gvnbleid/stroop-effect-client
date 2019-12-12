@@ -83,7 +83,11 @@ class App extends Component<{}, State> {
   };
 
   private getSet = (index: number) => {
-    request.get(`https://stroop-effect.herokuapp.com/stimuli/getPackage?field=${index}`, (request:any, response: any) => {
+    const options = {
+      headers: {'Content-Type' : 'text/plain'},
+    }
+
+    request.get(`https://stroop-effect.herokuapp.com/stimuli/getPackage?field=${index}`, options, (request:any, response: any) => {
       const stimuli : {name: string, color: string}[] = JSON.parse(response.body);
       console.log(stimuli);
       this.setState((prevState) => {
