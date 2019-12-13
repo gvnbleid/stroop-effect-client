@@ -52,7 +52,7 @@ class App extends Component<{}, State> {
           this.testState++;
         }
         
-        this.forceUpdate();
+        //this.forceUpdate();
         return;
       }
 
@@ -151,7 +151,7 @@ class App extends Component<{}, State> {
 
   private onInfoClick = () => {
     this.testState++;
-    this.forceUpdate();
+    //this.forceUpdate();
   }
 
   private onStartTest = () => {
