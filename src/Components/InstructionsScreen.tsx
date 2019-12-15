@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
-class InfoScreen extends Component {
+class InstructionsScreen extends Component {
     render() {
         return (
             <div>
                 <div className="textContainer">
-                    <p className="text">info</p>
+                    <p className="text">instructions</p>
                 </div>
                 <div className="buttonsContainer">
-                    <NavLink className="buttons" to="/instructions">DALEJ</NavLink>
+                    <NavLink className="buttons" to="/test">DALEJ</NavLink>
                 </div>
             </div>
         )
     }
 }
 
-export default InfoScreen;
+export default InstructionsScreen;

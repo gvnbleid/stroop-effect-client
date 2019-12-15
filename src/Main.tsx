@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import InfoScreen from "./Components/InfoScreen";
+import InstructionsScreen from "./Components/InstructionsScreen";
+import TestScreen from "./Components/TestScreen";
+import EndScreen from "./Components/EndScreen";
 import { Route, HashRouter} from "react-router-dom";
 
 class Main extends Component {
@@ -11,6 +14,9 @@ class Main extends Component {
                     <hr/>
 
                     <Route path="/" component={InfoScreen}/>
+                    <Route path="/instructions" component={InstructionsScreen}/>
+                    <Route path="/test" component={TestScreen}/>
+                    <Route path="/end" component={EndScreen}/>
                 </div>
             </HashRouter>
         )
