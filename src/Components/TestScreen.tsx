@@ -31,7 +31,7 @@ class TestScreen extends Component<{}, State> {
 
     isCorrectList: boolean[] = [];
 
-    order: number[] = [];
+    order: number[] = [0,1,2];
 
     onClick = (id: number, color: string) => {
         this.stopwatch.slice();
@@ -96,7 +96,7 @@ class TestScreen extends Component<{}, State> {
 
     componentDidMount() {
         //console.log("Component did mount");
-        this.order = getOrder();
+        //this.order = getOrder();
         this.loadNewSet();
     }
 

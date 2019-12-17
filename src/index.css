@@ -23,7 +23,7 @@ h1, h2, p, ul, li {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    justify-content: left;
+    text-align: left;
 }
 
 .stimulusTextBlue, .stimulusTextGreen, .stimulusTextRed, .stimulusTextYellow {
