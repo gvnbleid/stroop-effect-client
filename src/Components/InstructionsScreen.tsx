@@ -8,7 +8,7 @@ class InstructionsScreen extends Component {
         return (
             <div>
                 <div className="textContainer">
-                    <p className="text">instructions</p>
+                    <p className="text">{instructions()}</p>
                 </div>
                 <div className="buttonsContainer">
                     <NavLink className="buttons" to="/test">DALEJ</NavLink>

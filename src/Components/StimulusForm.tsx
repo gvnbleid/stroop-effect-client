@@ -11,10 +11,23 @@ export const StimulusForm: FunctionComponent<Props> = ({
     stimulus,
     onAnswer
 }) => {
+    const style = (color: string) => {
+        switch(color) {
+            case "blue":
+                return (<p className="stimulusTextBlue">{stimulus.name}</p>);
+            case "green":
+                return (<p className="stimulusTextGreen">{stimulus.name}</p>);
+            case "red":
+                return (<p className="stimulusTextRed">{stimulus.name}</p>);
+            case "yellow":
+                return (<p className="stimulusTextYellow">{stimulus.name}</p>);
+        }
+    }
+
     return (
         <div>
             <div className="textContainer">
-                <p className="text">{stimulus.name}</p>
+                {style(stimulus.color)}
             </div>
             <div className="buttonsContainer">
                 <table className="buttons">
