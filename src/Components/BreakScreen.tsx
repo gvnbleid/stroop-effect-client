@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, { FunctionComponent, useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { groupEnd } from "../texts";
 
@@ -9,15 +9,33 @@ interface Props {
 export const BreakScreen: FunctionComponent<Props> = ({
     onBreakEnd
 }) => {
-
     const [state, setState] = useState(120);
 
-    const callback = () => {
-        setState(state - 1);
-        if(state === 0) {
-            clearInterval(interval);
-        }
+    useInterval(() => {
+        setState(currState => currState - 1);
+    }, 1000)
+
+    function useInterval(callback: () => void, delay: number) {
+        const savedCallback = useRef<() => void>();
+
+        useEffect(() => {
+            savedCallback.current = callback;
+        }, [callback]);
+
+        useEffect(() => {
+            function tick() {
+                if(savedCallback.current != undefined) {
+                    savedCallback.current();
+                }
+            }
+            if(delay != null) {
+                let id = setInterval(tick, delay);
+                return () => clearInterval(id);
+            }
+        }, [[delay]]);
     }
+
+    
 
     const tryRenderNavLink = () => {
         if(state <= 0) {
@@ -26,12 +44,6 @@ export const BreakScreen: FunctionComponent<Props> = ({
             return (<div/>);
         }
     }
-
-    let interval: NodeJS.Timeout;
-
-    useEffect(() => {
-        interval = setInterval(callback, 1000);
-    }, []);
 
     return (
         <div>
