@@ -14,12 +14,7 @@ h1, h2, p, ul, li {
     text-align: center;
 }
 
-.textContainer {
-    background-color: #FF0000;
-}
-
 .buttonsContainer {
-    background-color: #00FF00;
     transform: translateY(100%);
 }
 

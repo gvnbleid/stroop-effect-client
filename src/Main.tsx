@@ -13,7 +13,7 @@ class Main extends Component {
                     <h1>Badanie</h1>
                     <hr/>
 
-                    <Route path="/" component={InfoScreen}/>
+                    <Route exact path="/" component={InfoScreen}/>
                     <Route path="/instructions" component={InstructionsScreen}/>
                     <Route path="/test" component={TestScreen}/>
                     <Route path="/end" component={EndScreen}/>
