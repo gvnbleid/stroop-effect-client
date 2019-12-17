@@ -4,7 +4,7 @@ import { Stimulus } from '../models/stimulus';
 
 interface Props {
     stimulus: Stimulus;
-    onAnswer: () => void;
+    onAnswer: (id: number, color: string) => void;
 }
 
 export const StimulusForm: FunctionComponent<Props> = ({
@@ -33,12 +33,12 @@ export const StimulusForm: FunctionComponent<Props> = ({
                 <table className="buttons">
                     <tbody>
                         <tr>
-                            <td><Button className="button" variant="contained" onClick={onAnswer}>czerwony</Button></td>
-                            <td><Button className="button" variant="contained" onClick={onAnswer}>zielony</Button></td>
+                            <td><Button className="button" variant="contained" onClick={() => onAnswer(0, stimulus.color)}>czerwony</Button></td>
+                            <td><Button className="button" variant="contained" onClick={() => onAnswer(1, stimulus.color)}>zielony</Button></td>
                             </tr>
                         <tr>
-                            <td><Button className="button" variant="contained" onClick={onAnswer}>niebieski</Button></td>
-                            <td><Button className="button" variant="contained" onClick={onAnswer}>żółty</Button></td>
+                            <td><Button className="button" variant="contained" onClick={() => onAnswer(2, stimulus.color)}>niebieski</Button></td>
+                            <td><Button className="button" variant="contained" onClick={() => onAnswer(3, stimulus.color)}>żółty</Button></td>
                         </tr>
                     </tbody>
                 </table>

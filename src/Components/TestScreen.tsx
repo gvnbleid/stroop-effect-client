@@ -5,8 +5,8 @@ import { StimulusForm } from "./StimulusForm";
 import { BreakScreen } from "./BreakScreen";
 import { Redirect } from "react-router";
 import { Stopwatch } from "ts-stopwatch";
-import * as request from "request";
-import { getSet } from "../requests";
+import { getSet, getOrder, saveResults } from "../requests";
+import _ from "lodash";
 
 interface State {
     stimuli: Stimulus[];
@@ -22,14 +22,31 @@ class TestScreen extends Component<{}, State> {
     };
 
     stopwatch: Stopwatch = new Stopwatch();
+    
     reactions: Reactions = {
         set_1: [],
         set_2: [],
         set_3: []
     };
 
-    onClick = () => {
+    isCorrectList: boolean[] = [];
+
+    order: number[] = [];
+
+    onClick = (id: number, color: string) => {
         this.stopwatch.slice();
+
+        if(id == 0 && color == "red") {
+            this.isCorrectList.push(true);
+        } else if (id == 1 && color == "green") {
+            this.isCorrectList.push(true);
+        } else if (id == 2 && color == "blue") {
+            this.isCorrectList.push(true);
+        } else if (id == 3 && color == "yellow") {
+            this.isCorrectList.push(true);
+        } else {
+            this.isCorrectList.push(false);
+        }
 
         this.setState(prevState => {
             prevState.stimuli.shift();
@@ -56,7 +73,7 @@ class TestScreen extends Component<{}, State> {
     }
 
     loadNewSet = () => {
-        getSet(this.state.testGroupNumber, this.loadNewSetCallback);
+        getSet(this.order[this.state.testGroupNumber], this.loadNewSetCallback);
     };
 
     onBreakEnd = () => {
@@ -65,19 +82,21 @@ class TestScreen extends Component<{}, State> {
 
     saveReactions = () => {
         const slices = this.stopwatch.getCompletedSlices().map(slice => slice.duration);
+        const reactions = _.zip(slices, this.isCorrectList);
         
         switch(this.state.testGroupNumber) {
             case 1:
-                this.reactions.set_1 = slices;
+                this.reactions.set_1 = reactions;
             case 2:
-                this.reactions.set_2 = slices;
+                this.reactions.set_2 = reactions;
             case 3:
-                this.reactions.set_3 = slices;
+                this.reactions.set_3 = reactions;
         }
     }
 
     componentDidMount() {
         //console.log("Component did mount");
+        this.order = getOrder();
         this.loadNewSet();
     }
 
@@ -92,7 +111,8 @@ class TestScreen extends Component<{}, State> {
         if(this.state.stimuli.length > 0) {
             return (<StimulusForm stimulus={this.state.stimuli[0]} onAnswer={this.onClick}/>)
         } else {
-            if(this.state.testGroupNumber === 2) {
+            if(this.state.testGroupNumber === 3) {
+                saveResults(this.reactions, null);
                 return (<Redirect to="/end"/>);
             }
 

@@ -10,7 +10,7 @@ h1, h2, p, ul, li {
 .textContainer, .buttonsContainer {
     position: absolute;
     height: 40%;
-    width: 100%;
+    width: 90%;
     text-align: center;
 }
 
@@ -23,6 +23,7 @@ h1, h2, p, ul, li {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+    justify-content: left;
 }
 
 .stimulusTextBlue, .stimulusTextGreen, .stimulusTextRed, .stimulusTextYellow {
