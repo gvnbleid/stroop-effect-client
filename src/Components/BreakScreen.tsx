@@ -1,6 +1,5 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Stopwatch } from "ts-stopwatch";
 import { groupEnd } from "../texts";
 
 interface Props {
@@ -28,7 +27,11 @@ export const BreakScreen: FunctionComponent<Props> = ({
         }
     }
 
-    const interval = setInterval(callback, 1000);
+    let interval: NodeJS.Timeout;
+
+    useEffect(() => {
+        interval = setInterval(callback, 1000);
+    }, []);
 
     return (
         <div>
