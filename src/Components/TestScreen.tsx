@@ -31,18 +31,18 @@ class TestScreen extends Component<{}, State> {
 
     isCorrectList: boolean[] = [];
 
-    order: number[] = [];
+    order: number[] = [0,1,2];
 
     onClick = (id: number, color: string) => {
         this.stopwatch.slice();
 
-        if(id == 0 && color == "red") {
+        if(id === 0 && color === "red") {
             this.isCorrectList.push(true);
-        } else if (id == 1 && color == "green") {
+        } else if (id === 1 && color === "green") {
             this.isCorrectList.push(true);
-        } else if (id == 2 && color == "blue") {
+        } else if (id === 2 && color === "blue") {
             this.isCorrectList.push(true);
-        } else if (id == 3 && color == "yellow") {
+        } else if (id === 3 && color === "yellow") {
             this.isCorrectList.push(true);
         } else {
             this.isCorrectList.push(false);
@@ -96,7 +96,7 @@ class TestScreen extends Component<{}, State> {
 
     componentDidMount() {
         //console.log("Component did mount");
-        this.order = getOrder();
+        //this.order = getOrder();
         this.loadNewSet();
     }
 
