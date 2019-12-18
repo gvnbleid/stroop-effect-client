@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { instructions } from "../texts";
+import example from "../example.png";
 
 
 class InstructionsScreen extends Component {
@@ -8,10 +9,11 @@ class InstructionsScreen extends Component {
         return (
             <div>
                 <div className="textContainer">
-                    <p className="text">{instructions()}</p>
+                    <p className="instructionsText">{instructions()}</p>
+                    <img src={example} alt="Example"/>
                 </div>
                 <div className="buttonsContainer">
-                    <NavLink className="buttons" to="/test">DALEJ</NavLink>
+                    <NavLink className="instructionsButton" to="/test">DALEJ</NavLink>
                 </div>
             </div>
         )

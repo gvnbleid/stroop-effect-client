@@ -106,7 +106,7 @@ class TestScreen extends Component<{}, State> {
             return (<div>Ładowanie...</div>);
         }
 
-        // console.log("response is done");
+        console.log("response is done");
 
         if(this.state.stimuli.length > 0) {
             return (<StimulusForm stimulus={this.state.stimuli[0]} onAnswer={this.onClick}/>)
