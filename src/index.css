@@ -40,10 +40,16 @@ h1, h2, p, ul, li {
 }
 
 img {
-    width: 20vw;
-    height: 50vh;
+    width: 50vw;
+    height: 20vh;
 }
 
+@media only screen and (min-width: 768px) {
+    img {
+        width: 20vw;
+        height: 40vh;
+    }
+}
 td {
     width: 15vh;
 }
